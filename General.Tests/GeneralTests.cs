@@ -21,7 +21,6 @@ namespace General.Tests
         private ISvcRabbitMQ _svcRabbitMQ;
         private ITestOutputHelper _testOutputHelper;
         private readonly string conn = @"Server=tcp:DESKTOP-4LRV5C3\\SQLEXPRESS,1433;Database=wrssolutions;User Id=wrssolutions; Password=1!@wrssolutions#$;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=true;Pooling=false;";
-        private DppRepository fnc;
 
         // setup
         public GeneralTests(ITestOutputHelper testOutputHelper)
@@ -70,7 +69,7 @@ namespace General.Tests
             if (!string.IsNullOrEmpty(conn))
             {
                 //Arrange
-                fnc = new DppRepository(conn);
+                DppRepository fnc = new DppRepository(conn);
 
                 //Act 
                 var result = fnc.QueryFirstOrDefault<string>("SELECT 1 VALUE");
