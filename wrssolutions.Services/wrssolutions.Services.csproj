@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\wrssolutions.Configs\wrssolutions.Configs.csproj" />
+    <ProjectReference Include="..\wrssolutions.Data\wrssolutions.Data.csproj" />
+    <ProjectReference Include="..\wrssolutions.Domain\wrssolutions.Domain.csproj" />
+    <ProjectReference Include="..\wrssolutions.DTO\wrssolutions.DTO.csproj" />
+  </ItemGroup>
+
+</Project>
