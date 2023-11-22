@@ -1,6 +1,6 @@
 WrsSolutions Test
 
-The project WrsSolutions Test was developed using .NET Core 7 with architecture SOA, IoC, HEXAGONAL, DDD, TDD, Entity Framework, Dapper, MongoDB Repository, Rabbit MQ, Docker, CQRS, SOLID, Clean Code, Swagger and Dependency Injection.
+The project WrsSolutions Test was developed using .NET Core 7 with architecture SOA, IoC, HEXAGONAL, DDD, TDD, Entity Framework, NHibernate, Dapper, MongoDB Repository, Rabbit MQ, Docker, CQRS, SOLID, Clean Code, Swagger and Dependency Injection.
 
 | — src
 
@@ -31,10 +31,6 @@ The project WrsSolutions Test was developed using .NET Core 7 with architecture 
 ##Setup Database 
 
 --LOCAL HOST SQL EXPRESS...
-
---DB MASTER user WrsSolutions 
-
-Create Dabase from script into repository
 
 Create Database 
 
