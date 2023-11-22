@@ -1,4 +1,5 @@
-﻿using wrssolutions.Domain.Entities.Person;
+﻿
+using wrssolutions.Domain.Entities;
 
 namespace wrssolutions.Services.Interfaces
 {

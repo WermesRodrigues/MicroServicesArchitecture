@@ -1,44 +1,39 @@
-﻿using wrssolutions.Data.Entity;
+﻿
+
+using Microsoft.EntityFrameworkCore;
+using wrssolutions.Data.Entity;
 using wrssolutions.Data.Repository.Dapper.Interface;
 using wrssolutions.Data.Repository.Entity;
+using wrssolutions.Domain.Entities;
 using wrssolutions.Domain.MongoEntities.LoggerMongo;
 using wrssolutions.Services.Interfaces;
-using Microsoft.Extensions.Logging;
-using wrssolutions.Domain.Entities;
 
 namespace wrssolutions.Services.Services
 {
-    public class SvcPerson : ISvcPerson
+    public class SvcClientCompany : ISvcClientCompany
     {
-        private IEFRepository<Person> model;
+        private IEFRepository<ClientCompany> model;
         private IDppRepository repository;
         private EFContext _objContext;
-        private readonly ILogger _logger;
         private readonly ISvcLoggerMongo _svcLoggerMongo;
 
-        public SvcPerson(
+        public SvcClientCompany(
                                 EFContext context,
                                 IDppRepository _repository,
-                                ILogger logger,
                                 ISvcLoggerMongo svcLoggerMongo)
         {
-            model = new EFRepository<Person>(context);
+            model = new EFRepository<ClientCompany>(context);
             repository = _repository;
             _objContext = context;
-            _logger = logger;
             _svcLoggerMongo = svcLoggerMongo;
         }
 
-        public Person? GetPersonByEmail(string email)
-        {
-            return model.Table.Where(x => x.Email == email).FirstOrDefault();
-        }
 
-        public bool Insert(Person person)
+        public bool Insert(ClientCompany clientCompany)
         {
             try
             {
-                model.Insert(person);
+                model.Insert(clientCompany);
 
                 return true;
             }
@@ -46,8 +41,6 @@ namespace wrssolutions.Services.Services
             {
                 string error = ex?.Message!;
                 //lOG
-                _logger.LogInformation(error);
-
                 _svcLoggerMongo.Insert(new LoggerMongo()
                 {
                     Error = error
@@ -57,11 +50,11 @@ namespace wrssolutions.Services.Services
             }
         }
 
-        public bool Update(Person person)
+        public bool Update(ClientCompany clientCompany)
         {
             try
             {
-                model.Update(person);
+                model.Update(clientCompany);
 
                 return true;
             }
@@ -70,8 +63,6 @@ namespace wrssolutions.Services.Services
                 string error = ex?.Message!;
 
                 //lOG
-                _logger.LogInformation(error);
-
                 _svcLoggerMongo.Insert(new LoggerMongo()
                 {
                     Error = error
@@ -82,5 +73,24 @@ namespace wrssolutions.Services.Services
         }
 
 
+        public List<ClientCompany> GetCompanyWithPeople(int companyID)
+        {
+            try
+            {
+                return model.Table.Where(x => x.CompanyID == companyID).Include(y => y.People).ToList();
+            }
+            catch (Exception ex)
+            {
+                string error = ex?.Message!;
+
+                //lOG
+                _svcLoggerMongo.Insert(new LoggerMongo()
+                {
+                    Error = error
+                });
+
+                return null!;
+            }
+        }
     }
 }

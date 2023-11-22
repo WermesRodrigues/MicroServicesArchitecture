@@ -1,7 +1,8 @@
 ﻿using wrssolutions.Domain.Commom;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
-namespace wrssolutions.Domain.Entities.Person
+namespace wrssolutions.Domain.Entities
 {
     public class Person : EntityBase
     {
@@ -12,5 +13,10 @@ namespace wrssolutions.Domain.Entities.Person
         public string? Fname { get; set; }
         public string? Mname { get; set; }
         public string? Lname { get; set; }
+        /// <summary>
+        /// ClientCompany
+        /// </summary>
+        [JsonIgnore]
+        public virtual ClientCompany ? ClientCompany { get; set; }
     }
 }

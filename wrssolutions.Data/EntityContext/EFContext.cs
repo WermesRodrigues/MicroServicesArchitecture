@@ -1,7 +1,7 @@
 ﻿using wrssolutions.Data.Mapping;
-using wrssolutions.Domain.Entities.Person;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using wrssolutions.Domain.Entities;
 
 namespace wrssolutions.Data.Entity
 {

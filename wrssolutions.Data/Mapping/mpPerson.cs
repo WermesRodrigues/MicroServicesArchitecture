@@ -1,6 +1,7 @@
-﻿using wrssolutions.Domain.Entities.Person;
+﻿
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
+using wrssolutions.Domain.Entities;
 
 namespace wrssolutions.Data.Mapping
 {
@@ -13,6 +14,9 @@ namespace wrssolutions.Data.Mapping
 
             //Chave Primaria
             builder.HasKey(c => c.PersonID);
+
+
+            builder.HasOne(e => e.ClientCompany).WithMany(e => e.People).HasForeignKey(e => e.CompanyID);
 
             #region Default Values
 

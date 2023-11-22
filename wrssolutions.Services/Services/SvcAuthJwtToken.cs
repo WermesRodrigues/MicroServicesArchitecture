@@ -18,18 +18,21 @@ namespace wrssolutions.Services.Services
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ISvcPerson _svcPerson;
         private readonly ISvcLoggerMongo _svcLoggerMongo;
+        private readonly ISvcClientCompany _svcClientCompany;
 
         public SvcAuthJwtToken(
                 UserManager<ApplicationUser> userManager,
                 SignInManager<ApplicationUser> signInManager,
                 ISvcPerson svcPerson,
-                ISvcLoggerMongo svcLoggerMongo)
+                ISvcLoggerMongo svcLoggerMongo,
+                ISvcClientCompany svcClientCompany)
 
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _svcPerson = svcPerson;
             _svcLoggerMongo = svcLoggerMongo;
+            _svcClientCompany = svcClientCompany;
         }
 
         public async Task<string> Login(dtoLoginInput model)
@@ -81,7 +84,7 @@ namespace wrssolutions.Services.Services
 
                     if (result.Succeeded)
                     {
-                        _svcPerson.Insert(new Domain.Entities.Person.Person()
+                        _svcPerson.Insert(new Domain.Entities.Person()
                         {
                             Email = model.Email,
                             Fname = model.Fname,

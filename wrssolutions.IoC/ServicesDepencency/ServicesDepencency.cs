@@ -29,6 +29,7 @@ namespace wrssolutions.IoC.ServicesDepencency
             //Services
             services.AddScoped<ISvcAuthJwtToken, SvcAuthJwtToken>();
             services.AddScoped<ISvcPerson, SvcPerson>();
+            services.AddScoped<ISvcClientCompany, SvcClientCompany>();
             services.AddScoped<ISvcLoggerMongo, SvcLoggerMongo>();
             services.AddScoped<ISvcRabbitMQ, SvcRabbitMQ>(_provider => new SvcRabbitMQ(_provider.GetService<ISvcLoggerMongo>()!, configuration["RabbitMQSettings:HostName"]!));
 
